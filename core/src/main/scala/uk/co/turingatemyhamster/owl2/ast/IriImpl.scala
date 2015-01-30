@@ -20,8 +20,4 @@ trait IriImpl extends owl2.Iri {
   override final type prefixName = ast.PrefixName
   override final type abbreviatedIRI = ast.AbbreviatedIRI
   override final type IRI = ast.IRI
-
-  override final implicit def fullIRI_isa_IRI: fullIRI <:< IRI = $conforms[fullIRI]
-
-  override final implicit def abbreviatedIRI_isa_IRI: abbreviatedIRI <:< IRI = $conforms[abbreviatedIRI]
 }
