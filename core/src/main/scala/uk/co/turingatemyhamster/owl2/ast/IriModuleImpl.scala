@@ -14,7 +14,7 @@ case class PrefixName(prefixString: String)
 /** An abbreviated IRI, matching the PNAME_LN production of SPARQL. */
 case class AbbreviatedIRI(abbreviatedString: String) extends IRI
 
-trait IriImpl extends owl2.Iri {
+trait IriModuleImpl extends owl2.IriModule {
 
   override final type fullIRI = ast.FullIRI
   override final type prefixName = ast.PrefixName

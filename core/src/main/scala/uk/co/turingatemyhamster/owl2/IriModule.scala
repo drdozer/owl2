@@ -5,7 +5,7 @@ package uk.co.turingatemyhamster.owl2
  *
  * @author Matthew Pocock
  */
-trait Iri {
+trait IriModule {
 
   /** An IRI as defined in [http://www.w3.org/TR/2012/REC-owl2-syntax-20121211/#ref-rfc-3987 | RFC3987], enclosed in a
     * pair of < (U+3C) and > (U+3E) characters.

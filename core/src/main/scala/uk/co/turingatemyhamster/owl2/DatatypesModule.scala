@@ -5,16 +5,16 @@ package uk.co.turingatemyhamster.owl2
  *
  * @author Matthew Pocock
  */
-trait Datatypes extends Numbers
-with FloatingPointNumbers
-with Strings
-with BooleanValues
-with BinaryData
-with IRIs
-with TimeInstants
-with XMLLiterals
+trait DatatypesModule extends NumbersModule
+with FloatingPointNumbersModule
+with StringsModule
+with BooleanValuesModule
+with BinaryDataModule
+with IRIsModule
+with TimeInstantsModule
+with XMLLiteralsModule
 
-trait Numbers {
+trait NumbersModule {
   type `owl:real`
   type `owl:rational`
   type `xsd:decimal`
@@ -33,12 +33,12 @@ trait Numbers {
   type `xsd:unsignedbyte`
 }
 
-trait FloatingPointNumbers {
+trait FloatingPointNumbersModule {
   type `xsd:double`
   type `xsd:float`
 }
 
-trait Strings {
+trait StringsModule {
   type `xsd:string`
   type `xsd:normalizedString`
   type `xsd:token`
@@ -48,24 +48,24 @@ trait Strings {
   type `xsd:NMTOKEN`
 }
 
-trait BooleanValues {
+trait BooleanValuesModule {
   type `xsd:boolean`
 }
 
-trait IRIs {
+trait IRIsModule {
   type `xsd:anyIRI`
 }
 
-trait BinaryData {
+trait BinaryDataModule {
   type `xsd:hexBinary`
   type `xsd:base64Binary`
 }
 
-trait TimeInstants {
+trait TimeInstantsModule {
   type `xsd:dateTime`
   type `xsd:dateTimeStamp`
 }
 
-trait XMLLiterals {
+trait XMLLiteralsModule {
   type `rdf:XMLLiteral`
 }

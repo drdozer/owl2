@@ -6,9 +6,9 @@ package owl2
  *
  * @author Matthew Pocock
  */
-trait Entities_Literals_AnonymousIndividuals {
+trait EntitiesLiteralsAnonymousIndividualsModule {
 
-  importedPackages : owl2.Iri =>
+  importedModules : owl2.IriModule =>
 
   type ClassExpression
 

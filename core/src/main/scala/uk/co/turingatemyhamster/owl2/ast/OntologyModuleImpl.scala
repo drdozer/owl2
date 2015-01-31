@@ -7,9 +7,9 @@ package ast
  *
  * @author Matthew Pocock
  */
-trait OntologysImpl extends owl2.Ontologys {
+trait OntologyModuleImpl extends owl2.OntologyModule {
 
-  importedPackages : owl2.Iri =>
+  importedModules : owl2.IriModule =>
 
   override type Ontology = ast.Ontology[IRI, Annotation, Axiom]
 

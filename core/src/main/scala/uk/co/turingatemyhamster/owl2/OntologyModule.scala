@@ -5,9 +5,9 @@ package uk.co.turingatemyhamster.owl2
  *
  * @author Matthew Pocock
  */
-trait Ontologys {
+trait OntologyModule {
 
-  importedPackages : Iri =>
+  importedModules : IriModule =>
 
   type Ontology
 

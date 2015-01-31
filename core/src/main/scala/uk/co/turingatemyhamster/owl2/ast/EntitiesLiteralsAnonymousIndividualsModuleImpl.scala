@@ -7,9 +7,9 @@ package ast
  *
  * @author Matthew Pocock
  */
-trait Entities_Literals_AnonymousIndividualsImpl extends owl2.Entities_Literals_AnonymousIndividuals {
+trait EntitiesLiteralsAnonymousIndividualsModuleImpl extends owl2.EntitiesLiteralsAnonymousIndividualsModule {
 
-  importedPackages : owl2.Iri with ast.IriImpl =>
+  importedModules : owl2.IriModule { type IRI = ast.IRI } =>
 
   override final type ClassExpression = ast.ClassExpression
 
