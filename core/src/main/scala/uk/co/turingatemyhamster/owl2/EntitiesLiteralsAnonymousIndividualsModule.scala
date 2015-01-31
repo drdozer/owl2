@@ -13,47 +13,40 @@ trait EntitiesLiteralsAnonymousIndividualsModule {
   type ClassExpression
 
   type Entity
-  // Entity: def entityIRI: IRI
 
-  def Entity : EntityApi
-
-  trait EntityApi {
-    def unapply(entity: Entity): Some[IRI]
-  }
-
+  // note: DataRange is refined in DataRangesModule
   type DataRange
-
-  def DataRange : DataRangeApi
 
   type UnlimitedNatural
 
-  trait DataRangeApi {
-    def unapply(dataRange: DataRange): Option[UnlimitedNatural]
-  }
-
   type Individual
-
-
 
   type Class <: ClassExpression with Entity
 
+  // note: ObjectProperty is refined in ObjectPropertyExpressionModule
   type ObjectProperty <: Entity
 
+  // note: DataProperty is refined in DataPropertyExpressionModule
   type DataProperty <: Entity
 
   type AnnotationProperty <: Entity
 
   // constraint: arity == 1
+  // note: Datatype is refined in DataRangesModule
   type Datatype <: Entity with DataRange
 
   type NamedIndividual <: Entity with Individual
 
-  type AnonymousIndividual
-  // AnonymousIndividual: def nodeId: String
+  type AnonymousIndividual <: Individual
 
-  def AnonymousIndividual: AnonymousIndividualApi
+  /* note: Literal hierarchy isn't on the diagram, but is described in:
+     http://www.w3.org/TR/2012/REC-owl2-syntax-20121211/#Literals */
+  type Literal
 
-  trait AnonymousIndividualApi {
-    def unapply(ai: AnonymousIndividual): Some[String]
-  }
+  type TypedLiteral <: Literal
+
+  type StringLiteralNoLanguage <: Literal
+
+  type StringLiteralWithLanguage <: Literal
+
 }

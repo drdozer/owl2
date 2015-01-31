@@ -11,29 +11,32 @@ trait EntitiesLiteralsAnonymousIndividualsModuleImpl extends owl2.EntitiesLitera
 
   importedModules : owl2.IriModule { type IRI = ast.IRI } =>
 
+  override final type UnlimitedNatural = BigInt
+
   override final type ClassExpression = ast.ClassExpression
 
   override final type Entity = ast.Entity
 
-  override final val Entity: EntityApi = new EntityApi {
-    override def unapply(entity: Entity) = Some(entity.entityIRI)
-  }
-
-  override final type DataRange = ast.DataRange[UnlimitedNatural]
+  override final type DataRange = ast.DataRange
 
   override final type Individual = ast.Individual
 
-  override final type Datatype = ast.Datatype[UnlimitedNatural]
-
-  override final type ObjectProperty = ast.ObjectProperty
-
-  override final type DataProperty = ast.DataProperty
+  override final type Datatype = ast.Datatype
 
   override final type AnnotationProperty = ast.AnnotationProperty
 
   override final type NamedIndividual = ast.NamedIndividual
 
   override final type AnonymousIndividual = ast.AnonymousIndividual
+
+  override final type Literal = ast.Literal
+
+  override final type TypedLiteral = ast.TypedLiteral
+
+  override final type StringLiteralNoLanguage = ast.StringLiteralNoLangauge
+
+  override final type StringLiteralWithLanguage = ast.StringLiteralWithLanguage
+
 }
 
 trait ClassExpression
@@ -42,8 +45,8 @@ trait Entity {
   def entityIRI: IRI
 }
 
-trait DataRange[UnlimitedNatural] {
-  def arity: UnlimitedNatural
+trait DataRange {
+  def arity: BigInt
 }
 
 trait Individual
@@ -53,13 +56,9 @@ trait Individual
 case class Class(entityIRI: IRI) extends ClassExpression with Entity
 
 // rdfs:Literal or a datatype in the datatype map or not a reserved vocabulary IRI
-case class Datatype[UnlimitedNatural](entityIRI: IRI,
-                                      arity: UnlimitedNatural,
-                                      datatype: Literal) extends Entity with DataRange[UnlimitedNatural]
-
-case class ObjectProperty(entityIRI: IRI) extends Entity
-
-case class DataProperty(entityIRI: IRI) extends Entity
+case class Datatype(entityIRI: IRI,
+                    arity: BigInt,
+                    datatype: Literal) extends Entity with DataRange
 
 case class AnnotationProperty(entityIRI: IRI) extends Entity
 
@@ -69,6 +68,6 @@ case class AnonymousIndividual(nodeID: String) extends Individual
 
 sealed trait Literal
 
-case class TypedLiteral[UnlimitedNatural](value: String, datatype: Datatype[UnlimitedNatural]) extends Literal
-case class StringLiteralNoLangauge[UnlimitedNatural](value: String) extends Literal
-case class StringLiteralWithLanguage[UnlimitedNatural](value: String, language: String) extends Literal
+case class TypedLiteral(value: String, datatype: Datatype) extends Literal
+case class StringLiteralNoLangauge(value: String) extends Literal
+case class StringLiteralWithLanguage(value: String, language: String) extends Literal

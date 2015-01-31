@@ -20,4 +20,5 @@ trait IriModuleImpl extends owl2.IriModule {
   override final type prefixName = ast.PrefixName
   override final type abbreviatedIRI = ast.AbbreviatedIRI
   override final type IRI = ast.IRI
+
 }

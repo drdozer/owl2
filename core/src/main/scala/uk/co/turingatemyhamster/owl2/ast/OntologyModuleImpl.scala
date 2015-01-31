@@ -13,27 +13,10 @@ trait OntologyModuleImpl extends owl2.OntologyModule {
 
   override type Ontology = ast.Ontology[IRI, Annotation, Axiom]
 
-  override final val Ontology: OntologyApi = new OntologyApi {
-    override def apply(directlyImports: List[IRI],
-                       ontologyIRI: Option[IRI],
-                       versionIRI: Option[IRI],
-                       ontologyAnnotation: List[Annotation],
-                       axioms: List[Axiom]) = ast.Ontology(directlyImports, ontologyIRI, versionIRI, ontologyAnnotation, axioms)
-
-    override def unapply(o: Ontology) = ast.Ontology.unapply(o)
-  }
-
   override final type Annotation = ast.Annotation
-
-  override final val Annotation: AnnotationApi = new AnnotationApi {
-    override def unapply(annotation: Annotation) = Some(annotation.annotationAnnotations)
-  }
 
   override final type Axiom = ast.Axiom
 
-  override final val Axiom: AxiomApi = new AxiomApi {
-    override def unapply(axiom: Axiom) = Some(axiom.axiomAnnotations)
-  }
 }
 
 // constraint: versionIRI.isDefined ==> ontologyIRI.isDefined
