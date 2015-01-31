@@ -38,7 +38,7 @@ trait ObjectPropertyAxiomsModuleAst extends owl2.ObjectPropertyAxiomsModule {
   override final type TransitiveObjectProperty = ast.TransitiveObjectProperty
 
   override final type AsymmetricObjectProperty = ast.AsymmetricObjectProperty
-  
+
 }
 
 // constraint: objectPropertyExpressions 2..*
