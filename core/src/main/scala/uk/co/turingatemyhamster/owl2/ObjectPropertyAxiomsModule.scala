@@ -21,4 +21,19 @@ trait ObjectPropertyAxiomsModule {
   type ObjectPropertyRange <: ObjectPropertyAxiom
 
   type InverseObjectProperties <: ObjectPropertyAxiom
+
+  type FunctionalObjectProperty <: ObjectPropertyAxiom
+
+  type ReflexiveObjectProperty <: ObjectPropertyAxiom
+
+  type InverseFunctionalObjectProperty <: ObjectPropertyAxiom
+
+  type IrreflexiveObjectProperty <: ObjectPropertyAxiom
+
+  type SymmetricObjectProperty <: ObjectPropertyAxiom
+
+  type TransitiveObjectProperty <: ObjectPropertyAxiom
+
+  type AsymmetricObjectProperty <: ObjectPropertyAxiom
+
 }

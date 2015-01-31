@@ -25,6 +25,20 @@ trait ObjectPropertyAxiomsModuleAst extends owl2.ObjectPropertyAxiomsModule {
 
   override final type InverseObjectProperties = ast.InverseObjectProperties
 
+  override final type FunctionalObjectProperty = ast.FunctionalObjectProperty
+
+  override final type ReflexiveObjectProperty = ast.ReflexiveObjectProperty
+
+  override final type InverseFunctionalObjectProperty = ast.InverseFunctionalObjectProperty
+
+  override final type IrreflexiveObjectProperty = ast.IrreflexiveObjectProperty
+
+  override final type SymmetricObjectProperty = ast.SymmetricObjectProperty
+
+  override final type TransitiveObjectProperty = ast.TransitiveObjectProperty
+
+  override final type AsymmetricObjectProperty = ast.AsymmetricObjectProperty
+  
 }
 
 // constraint: objectPropertyExpressions 2..*
@@ -50,3 +64,24 @@ case class ObjectPropertyRange(axiomAnnotations: List[Annotation],
 case class InverseObjectProperties(axiomAnnotations: List[Annotation],
                                    objectPropertyExpression1: ObjectPropertyExpression,
                                    objectPropertyExpression2: ObjectPropertyExpression) extends ObjectPropertyAxiom
+
+case class FunctionalObjectProperty(axiomAnnotations: List[Annotation],
+                                    objectPropertyExpression: ObjectPropertyExpression) extends ObjectPropertyAxiom
+
+case class ReflexiveObjectProperty(axiomAnnotations: List[Annotation],
+                                   objectPropertyExpression: ObjectPropertyExpression) extends ObjectPropertyAxiom
+
+case class InverseFunctionalObjectProperty(axiomAnnotations: List[Annotation],
+                                           objectPropertyExpression: ObjectPropertyExpression) extends ObjectPropertyAxiom
+
+case class IrreflexiveObjectProperty(axiomAnnotations: List[Annotation],
+                                     objectPropertyExpression: ObjectPropertyExpression) extends ObjectPropertyAxiom
+
+case class SymmetricObjectProperty(axiomAnnotations: List[Annotation],
+                                   objectPropertyExpression: ObjectPropertyExpression) extends ObjectPropertyAxiom
+
+case class TransitiveObjectProperty(axiomAnnotations: List[Annotation],
+                                    objectPropertyExpression: ObjectPropertyExpression) extends ObjectPropertyAxiom
+
+case class AsymmetricObjectProperty(axiomAnnotations: List[Annotation],
+                                    objectPropertyExpression: ObjectPropertyExpression) extends ObjectPropertyAxiom
