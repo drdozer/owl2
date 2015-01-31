@@ -7,11 +7,13 @@ package ast
  *
  * @author Matthew Pocock
  */
-trait DeclarationModuleImpl extends DeclarationModule {
+trait DeclarationModuleAst extends DeclarationModule {
 
   importedModules : OntologyModule  with
     EntitiesLiteralsAnonymousIndividualsModule with
-    IriModule { type Axiom = ast.Axiom } =>
+    IriModule {
+    type Axiom = ast.Axiom
+  } =>
 
   override final type Declaration = ast.Declaration
 
