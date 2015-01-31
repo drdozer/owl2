@@ -22,8 +22,6 @@ trait ObjectPropertyAxiom extends Axiom
 
 trait DataPropertyAxiom extends Axiom
 
-trait DatatypeDefinition extends Axiom
-
 trait hasKey extends Axiom
 
 trait Assertion extends Axiom
