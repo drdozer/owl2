@@ -64,9 +64,9 @@ case class AnnotationProperty(entityIRI: IRI) extends Entity
 
 case class NamedIndividual(entityIRI: IRI) extends Entity with Individual
 
-case class AnonymousIndividual(nodeID: String) extends Individual
+case class AnonymousIndividual(nodeID: String) extends Individual with AnnotationValue
 
-sealed trait Literal
+sealed trait Literal extends AnnotationValue
 
 case class TypedLiteral(value: String, datatype: Datatype) extends Literal
 case class StringLiteralNoLangauge(value: String) extends Literal
