@@ -10,10 +10,18 @@ package ast
 trait AxiomsModuleAst extends owl2.AxiomsModule {
 
   importedModules: owl2.DeclarationModule with owl2.OntologyModule {
-    type Declaration = ast.Declaration
+    type Axiom = ast.Axiom
   } =>
 
+  override final type ClassAxiom = ast.ClassAxiom
 
+  override final type ObjectPropertyAxiom = ast.ObjectPropertyAxiom
+
+  override final type DataPropertyAxiom = ast.DataPropertyAxiom
+
+  override final type Assertion = ast.Assertion
+
+  override final type AnnotationAxiom = ast.AnnotationAxiom
 }
 
 trait ClassAxiom extends Axiom

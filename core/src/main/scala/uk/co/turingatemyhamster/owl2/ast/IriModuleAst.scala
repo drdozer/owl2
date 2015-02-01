@@ -3,7 +3,7 @@ package owl2
 package ast
 
 
-sealed trait IRI extends AnnotationValue
+sealed trait IRI extends AnnotationSubject with AnnotationValue
 
 /** A full IRI string, without the wrapping < (U+3C) and > (U+3E) characters. */
 case class FullIRI(iriString: String) extends IRI
