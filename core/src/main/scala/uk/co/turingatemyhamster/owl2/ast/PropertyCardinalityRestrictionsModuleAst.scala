@@ -7,7 +7,7 @@ package ast
  *
  * @author Matthew Pocock
  */
-trait PropertyCardinalityRestrictionsModuleImpl extends owl2.PropertyCardinalityRestrictionsModule {
+trait ObjectPropertyCardinalityRestrictionsModuleImpl extends owl2.ObjectPropertyCardinalityRestrictionsModule {
 
   importedModules : owl2.EntitiesLiteralsAnonymousIndividualsModule with owl2.IriModule {
     type UnlimitedNatural = BigInt

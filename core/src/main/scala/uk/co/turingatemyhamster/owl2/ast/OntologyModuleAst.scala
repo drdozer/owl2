@@ -22,11 +22,11 @@ trait OntologyModuleImpl extends owl2.OntologyModule {
 // constraint: versionIRI.isDefined ==> ontologyIRI.isDefined
 // Could encode as:
 //   case class OntologyURI(uriValue: IRI, versionIRI: Option[IRI])
-case class Ontology[IRI, Annotation, Axiom](directlyImportsDocuments: List[IRI],
-                                            ontologyIRI: Option[IRI],
-                                            versionIRI: Option[IRI],
-                                            ontologyAnnotations: List[Annotation],
-                                            axioms: List[Axiom])
+case class Ontology[IRI, Annotation, Axiom](directlyImportsDocuments: List[IRI] = Nil,
+                                            ontologyIRI: Option[IRI] = None,
+                                            versionIRI: Option[IRI] = None,
+                                            ontologyAnnotations: List[Annotation] = Nil,
+                                            axioms: List[Axiom] = Nil)
 
 trait Annotation {
   def annotationAnnotations: List[Annotation]

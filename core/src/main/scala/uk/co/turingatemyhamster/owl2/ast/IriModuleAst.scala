@@ -12,7 +12,7 @@ case class FullIRI(iriString: String) extends IRI
 case class PrefixName(prefixString: String)
 
 /** An abbreviated IRI, matching the PNAME_LN production of SPARQL. */
-case class AbbreviatedIRI(abbreviatedString: String) extends IRI
+case class AbbreviatedIRI(prefixName: PrefixName, abbreviatedString: String) extends IRI
 
 trait IriModuleImpl extends owl2.IriModule {
 

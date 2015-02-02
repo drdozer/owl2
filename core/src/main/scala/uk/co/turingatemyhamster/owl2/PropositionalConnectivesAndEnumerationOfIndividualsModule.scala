@@ -8,7 +8,7 @@ package owl2
  */
 trait PropositionalConnectivesAndEnumerationOfIndividualsModule {
 
-  importedModules : owl2.EntitiesLiteralsAnonymousIndividualsModule with owl2.IRIsModule =>
+  importedModules : owl2.EntitiesLiteralsAnonymousIndividualsModule with owl2.IriModule =>
 
   type ObjectUnionOf <: ClassExpression
 

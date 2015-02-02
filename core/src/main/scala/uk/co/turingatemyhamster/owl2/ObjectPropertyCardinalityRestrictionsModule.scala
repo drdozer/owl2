@@ -6,7 +6,7 @@ package owl2
  *
  * @author Matthew Pocock
  */
-trait PropertyCardinalityRestrictionsModule {
+trait ObjectPropertyCardinalityRestrictionsModule {
 
   importedModules : owl2.EntitiesLiteralsAnonymousIndividualsModule with owl2.IriModule =>
 

@@ -14,7 +14,7 @@ trait AnnotationsModule {
 
   type AnonymousIndividual <: AnnotationValue
 
-  type IRI <: AnnotationValue
+  override type IRI <: AnnotationValue
 
   type Literal <: AnnotationValue
 

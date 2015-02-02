@@ -23,7 +23,7 @@ trait ClassExpressionAxiomsModuleAst extends owl2.ClassExpressionAxiomsModule {
 
 }
 
-case class SubClassOf(axiomAnnotations: List[Annotation],
+case class SubClassOf(axiomAnnotations: List[Annotation] = Nil,
                       subClassExpression: ClassExpression,
                       superClassExpression: ClassExpression) extends ClassAxiom
 
