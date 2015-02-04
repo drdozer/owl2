@@ -10,7 +10,6 @@ object OWL2Profiles {
 
   trait Full
     extends IriModule
-
     with EntitiesLiteralsAnonymousIndividualsModule
     with DataRangesModule
     with DataPropertyExpressionModule
@@ -20,10 +19,15 @@ object OWL2Profiles {
     with ObjectPropertyCardinalityRestrictionsModule
     with ObjectPropertyRestrictionsModule
     with PropositionalConnectivesAndEnumerationOfIndividualsModule
-
     with OntologyModule
     with AnnotationsModule
-
+    with AxiomsModule
     with DeclarationModule
+    with ClassExpressionAxiomsModule
+    with ObjectPropertyAxiomsModule
+    with DataPropertyAxiomsModule
+    with DatatypeDefinitionsModule
+    with AssertionsModule
+    with AnnotationAxiomModule
 
 }

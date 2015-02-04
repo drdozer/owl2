@@ -15,7 +15,7 @@ trait IriModule {
   /** A finite sequence of characters matching the as PNAME_NS production of
     * [http://www.w3.org/TR/2012/REC-owl2-syntax-20121211/#ref-sparql | SPARQL].
     */
-  type prefixName
+  type prefixName <: AnyRef
 
   /** A finite sequence of characters matching the PNAME_LN production of
     * [http://www.w3.org/TR/2012/REC-owl2-syntax-20121211/#ref-sparql | SPARQL].
@@ -24,5 +24,5 @@ trait IriModule {
 
   /** A full or abbreviated IRI.
     */
-  type IRI
+  type IRI <: AnyRef
 }

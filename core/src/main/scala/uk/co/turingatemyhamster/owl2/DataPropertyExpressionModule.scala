@@ -10,7 +10,7 @@ trait DataPropertyExpressionModule {
 
   importedModules : owl2.IriModule with owl2.EntitiesLiteralsAnonymousIndividualsModule =>
 
-  type DataPropertyExpression
+  type DataPropertyExpression <: AnyRef
 
   type DataProperty <: Entity with DataPropertyExpression
 

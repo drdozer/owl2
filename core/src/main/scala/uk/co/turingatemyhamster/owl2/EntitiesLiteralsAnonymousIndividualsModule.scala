@@ -10,16 +10,16 @@ trait EntitiesLiteralsAnonymousIndividualsModule {
 
   importedModules : owl2.IriModule =>
 
-  type ClassExpression
+  type ClassExpression <: AnyRef
 
-  type Entity
+  type Entity <: AnyRef
 
   // note: DataRange is refined in DataRangesModule
-  type DataRange
+  type DataRange <: AnyRef
 
-  type UnlimitedNatural
+  type UnlimitedNatural <: AnyRef
 
-  type Individual
+  type Individual <: AnyRef
 
   type Class <: ClassExpression with Entity
 
@@ -41,7 +41,7 @@ trait EntitiesLiteralsAnonymousIndividualsModule {
 
   /* note: Literal hierarchy isn't on the diagram, but is described in:
      http://www.w3.org/TR/2012/REC-owl2-syntax-20121211/#Literals */
-  type Literal
+  type Literal <: AnyRef
 
   type TypedLiteral <: Literal
 

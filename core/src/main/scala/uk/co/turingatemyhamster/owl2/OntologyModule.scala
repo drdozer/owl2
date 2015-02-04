@@ -9,10 +9,10 @@ trait OntologyModule {
 
   importedModules : IriModule =>
 
-  type Ontology
+  type Ontology <: AnyRef
 
-  type Annotation
+  type Annotation <: AnyRef
   
-  type Axiom
+  type Axiom <: AnyRef
 
 }

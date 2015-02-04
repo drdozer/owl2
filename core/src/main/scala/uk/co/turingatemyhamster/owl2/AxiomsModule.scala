@@ -8,7 +8,7 @@ package owl2
  */
 trait AxiomsModule {
 
-  importedModules: owl2.DeclarationModule with owl2.OntologyModule =>
+  importedModules: owl2.OntologyModule =>
 
   type Declaration <: Axiom
 

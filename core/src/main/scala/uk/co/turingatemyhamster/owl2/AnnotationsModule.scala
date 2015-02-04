@@ -10,9 +10,9 @@ trait AnnotationsModule {
 
   importedModules : owl2.IriModule with owl2.EntitiesLiteralsAnonymousIndividualsModule =>
 
-  type AnnotationValue
+  type AnnotationValue <: AnyRef
 
-  type AnonymousIndividual <: AnnotationValue
+  type AnonymousIndividual <: Individual with AnnotationValue
 
   type IRI <: AnnotationValue
 

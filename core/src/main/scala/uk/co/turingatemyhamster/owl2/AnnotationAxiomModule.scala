@@ -18,7 +18,7 @@ trait AnnotationAxiomModule {
 
   type AnnotationAssertion <: AnnotationAxiom
 
-  type AnnotationSubject
+  type AnnotationSubject <: AnyRef
 
   type IRI <: AnnotationSubject
 

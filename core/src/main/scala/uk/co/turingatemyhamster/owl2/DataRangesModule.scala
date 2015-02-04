@@ -20,5 +20,5 @@ trait DataRangesModule {
 
   type DataIntersectionOf <: DataRange
 
-  type FacetRestriction
+  type FacetRestriction <: AnyRef
 }
