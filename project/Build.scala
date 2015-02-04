@@ -10,8 +10,8 @@ object Owl2Build extends Build {
 
   lazy val core = project.settings(
     organization := "uk.co.turingatemyhamster",
-    scalaVersion := "2.11.4",
-    crossScalaVersions := Seq("2.11.4", "2.10.4"),
+    scalaVersion := "2.11.5",
+    crossScalaVersions := Seq("2.11.5", "2.10.4"),
     scalacOptions ++= Seq("-deprecation", "-unchecked"),
     version := baseVersion,
     resolvers += Resolver.url(
