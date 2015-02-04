@@ -8,13 +8,13 @@ package owl2
  */
 trait AnnotationsModule {
 
-  importedModules : owl2.EntitiesLiteralsAnonymousIndividualsModule with owl2.OntologyModule with owl2.IriModule =>
+  importedModules : owl2.IriModule with owl2.EntitiesLiteralsAnonymousIndividualsModule =>
 
   type AnnotationValue
 
   type AnonymousIndividual <: AnnotationValue
 
-  override type IRI <: AnnotationValue
+  type IRI <: AnnotationValue
 
   type Literal <: AnnotationValue
 

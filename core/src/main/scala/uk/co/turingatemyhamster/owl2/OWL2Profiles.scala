@@ -9,17 +9,21 @@ package owl2
 object OWL2Profiles {
 
   trait Full
-    extends AnnotationsModule
-    with PropositionalConnectivesAndEnumerationOfIndividualsModule
-    with OntologyModule
-    with ObjectPropertyRestrictionsModule
-    with ObjectPropertyCardinalityRestrictionsModule
-    with ObjectPropertyExpressionsModule
-    with DataPropertyRestrictionsModule
-    with DataPropertyCardinalityRestrictionsModule
-    with DataPropertyExpressionModule
-    with DataRangesModule
+    extends IriModule
+
     with EntitiesLiteralsAnonymousIndividualsModule
-    with IriModule
+    with DataRangesModule
+    with DataPropertyExpressionModule
+    with DataPropertyCardinalityRestrictionsModule
+    with DataPropertyRestrictionsModule
+    with ObjectPropertyExpressionsModule
+    with ObjectPropertyCardinalityRestrictionsModule
+    with ObjectPropertyRestrictionsModule
+    with PropositionalConnectivesAndEnumerationOfIndividualsModule
+
+    with OntologyModule
+    with AnnotationsModule
+
+    with DeclarationModule
 
 }

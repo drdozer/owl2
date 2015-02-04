@@ -7,11 +7,13 @@ package ast
  *
  * @author Matthew Pocock
  */
-trait PropositionalConnectivesAndEnumerationOfIndividualsModuleImpl extends owl2.PropositionalConnectivesAndEnumerationOfIndividualsModule {
+trait PropositionalConnectivesAndEnumerationOfIndividualsModuleAst extends owl2.PropositionalConnectivesAndEnumerationOfIndividualsModule {
 
-  importedModules : owl2.EntitiesLiteralsAnonymousIndividualsModule with owl2.IRIsModule {
+  importedModules : owl2.IriModule with owl2.EntitiesLiteralsAnonymousIndividualsModule {
     type ClassExpression = ast.ClassExpression
   } =>
+
+  
 
   override final type ObjectUnionOf = ast.ObjectUnionOf
 

@@ -8,7 +8,7 @@ package owl2
  */
 trait DataRangesModule {
 
-  importedModules : owl2.EntitiesLiteralsAnonymousIndividualsModule with owl2.IriModule =>
+  importedModules : owl2.IriModule with owl2.EntitiesLiteralsAnonymousIndividualsModule =>
 
   type DataComplementOf <: DataRange
 

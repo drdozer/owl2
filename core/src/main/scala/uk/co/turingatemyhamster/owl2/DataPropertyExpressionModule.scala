@@ -8,7 +8,7 @@ package owl2
  */
 trait DataPropertyExpressionModule {
 
-  importedModules : owl2.EntitiesLiteralsAnonymousIndividualsModule with owl2.IriModule =>
+  importedModules : owl2.IriModule with owl2.EntitiesLiteralsAnonymousIndividualsModule =>
 
   type DataPropertyExpression
 

@@ -8,7 +8,7 @@ package owl2
  */
 trait ObjectPropertyCardinalityRestrictionsModule {
 
-  importedModules : owl2.EntitiesLiteralsAnonymousIndividualsModule with owl2.IriModule =>
+  importedModules : owl2.IriModule with owl2.EntitiesLiteralsAnonymousIndividualsModule =>
 
   type ObjectMaxCardinality <: ClassExpression
 
