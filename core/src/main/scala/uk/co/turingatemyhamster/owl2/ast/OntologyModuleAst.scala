@@ -13,8 +13,6 @@ trait OntologyModuleImpl extends owl2.OntologyModule {
 
   override type Ontology = ast.Ontology[IRI, Annotation, Axiom]
 
-  override final type Annotation = ast.Annotation
-
   override final type Axiom = ast.Axiom
 
 }
@@ -27,10 +25,6 @@ case class Ontology[IRI, Annotation, Axiom](directlyImportsDocuments: List[IRI] 
                                             versionIRI: Option[IRI] = None,
                                             ontologyAnnotations: List[Annotation] = Nil,
                                             axioms: List[Axiom] = Nil)
-
-trait Annotation {
-  def annotationAnnotations: List[Annotation]
-}
 
 trait Axiom {
   def axiomAnnotations: List[Annotation]
