@@ -12,7 +12,7 @@ trait AnnotationsModule {
 
   type AnnotationValue <: AnyRef
 
-  type AnonymousIndividual <: Individual with AnnotationValue
+  type AnonymousIndividual <: AnnotationValue
 
   type IRI <: AnnotationValue
 

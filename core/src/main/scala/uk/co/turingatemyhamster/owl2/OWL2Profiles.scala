@@ -29,5 +29,9 @@ object OWL2Profiles {
     with DatatypeDefinitionsModule
     with AssertionsModule
     with AnnotationAxiomModule
+  {
+    type IRI <: AnnotationSubject with AnnotationValue
+    type AnonymousIndividual <: Individual with AnnotationValue with AnnotationSubject
+  }
 
 }
