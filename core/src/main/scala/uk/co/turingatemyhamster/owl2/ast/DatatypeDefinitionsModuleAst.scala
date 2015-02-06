@@ -15,6 +15,6 @@ trait DatatypeDefinitionsModuleAst extends owl2.DatatypeDefinitionsModule {
 
 }
 
-case class DatatypeDefinition(axiomAnnotations: List[Annotation],
+case class DatatypeDefinition(axiomAnnotations: List[Annotation] = Nil,
                               dataRange: DataRange,
                               datatype: Datatype) extends Axiom

@@ -24,19 +24,19 @@ trait AnnotationAxiomModuleAst extends owl2.AnnotationAxiomModule {
   override final type AnnotationSubject = ast.AnnotationSubject
 }
 
-case class SubAnnotationPropertyOf(axiomAnnotations: List[Annotation],
+case class SubAnnotationPropertyOf(axiomAnnotations: List[Annotation] = Nil,
                                    subAnnotationProperty: AnnotationProperty,
                                    superAnnotationProperty: AnnotationProperty) extends AnnotationAxiom
 
-case class AnnotationPropertyDomain(axiomAnnotations: List[Annotation],
+case class AnnotationPropertyDomain(axiomAnnotations: List[Annotation] = Nil,
                                    annotationProperty: AnnotationProperty,
                                    domain: IRI) extends AnnotationAxiom
 
-case class AnnotationPropertyRange(axiomAnnotations: List[Annotation],
+case class AnnotationPropertyRange(axiomAnnotations: List[Annotation] = Nil,
                                    annotationProperty: AnnotationProperty,
                                    range: IRI) extends AnnotationAxiom
 
-case class AnnotationAssertion(axiomAnnotations: List[Annotation],
+case class AnnotationAssertion(axiomAnnotations: List[Annotation] = Nil,
                                annotationSubject: AnnotationSubject,
                                annotationProperty: AnnotationProperty,
                                annotationValue: AnnotationValue) extends AnnotationAxiom

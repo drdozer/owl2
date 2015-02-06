@@ -29,32 +29,32 @@ trait AssertionsModuleAst extends owl2.AssertionsModule {
 
 }
 
-case class SameIndividual(axiomAnnotations: List[Annotation],
+case class SameIndividual(axiomAnnotations: List[Annotation] = Nil,
                           individuals: List[Individual]) extends Assertion
 
-case class DifferentIndividuals(axiomAnnotations: List[Annotation],
+case class DifferentIndividuals(axiomAnnotations: List[Annotation] = Nil,
                                 individuals: List[Individual]) extends Assertion
 
-case class ClassAssertion(axiomAnnotations: List[Annotation],
+case class ClassAssertion(axiomAnnotations: List[Annotation] = Nil,
                            individual: Individual,
                            classExpression: ClassExpression) extends Assertion
 
-case class ObjectPropertyAssertion(axiomAnnotations: List[Annotation],
+case class ObjectPropertyAssertion(axiomAnnotations: List[Annotation] = Nil,
                                    sourceIndividual: Individual,
                                    objectPropertyExpression: ObjectPropertyExpression,
                                    targetIndividual: Individual) extends Assertion
 
-case class NegativeObjectPropertyAssertion(axiomAnnotations: List[Annotation],
+case class NegativeObjectPropertyAssertion(axiomAnnotations: List[Annotation] = Nil,
                                            sourceIndividual: Individual,
                                            objectPropertyExpression: ObjectPropertyExpression,
                                            targetIndividual: Individual) extends Assertion
 
-case class DataPropertyAssertion(axiomAnnotations: List[Annotation],
+case class DataPropertyAssertion(axiomAnnotations: List[Annotation] = Nil,
                                  sourceIndividual: Individual,
                                  dataPropertyExpression: DataPropertyExpression,
                                  targetValue: Literal) extends Assertion
 
-case class NegativeDataPropertyAssertion(axiomAnnotations: List[Annotation],
+case class NegativeDataPropertyAssertion(axiomAnnotations: List[Annotation] = Nil,
                                          sourceIndividual: Individual,
                                          dataPropertyExpression: DataPropertyExpression,
                                          targetValue: Literal) extends Assertion

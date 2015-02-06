@@ -26,23 +26,23 @@ trait DataPropertyAxiomsModuleAst extends owl2.DataPropertyAxiomsModule {
   override final type DataPropertyRange = ast.DataPropertyRange
 }
 
-case class SubDataPropertyOf(axiomAnnotations: List[Annotation],
+case class SubDataPropertyOf(axiomAnnotations: List[Annotation] = Nil,
                              superDataPropertyExpression: DataPropertyExpression,
                              subDataPropertyExpression: DataPropertyExpression) extends DataPropertyAxiom
 
-case class DisjointDataProperties(axiomAnnotations: List[Annotation],
+case class DisjointDataProperties(axiomAnnotations: List[Annotation] = Nil,
                                   dataPropertyExpressions: List[DataPropertyExpression]) extends DataPropertyAxiom
 
-case class EquivalentDataProperties(axiomAnnotations: List[Annotation],
+case class EquivalentDataProperties(axiomAnnotations: List[Annotation] = Nil,
                                     dataPropertyExpressions: List[DataPropertyExpression]) extends DataPropertyAxiom
 
-case class FunctionalDataProperty(axiomAnnotations: List[Annotation],
+case class FunctionalDataProperty(axiomAnnotations: List[Annotation] = Nil,
                                   dataPropertyExpression: DataPropertyExpression) extends DataPropertyAxiom
 
-case class DataPropertyDomain(axiomAnnotations: List[Annotation],
+case class DataPropertyDomain(axiomAnnotations: List[Annotation] = Nil,
                               dataPropertyExpression: DataPropertyExpression,
                               domain: ClassExpression) extends DataPropertyAxiom
 
-case class DataPropertyRange(axiomAnnotations: List[Annotation],
+case class DataPropertyRange(axiomAnnotations: List[Annotation] = Nil,
                              dataPropertyExpression: DataPropertyExpression,
                              range: DataRange) extends DataPropertyAxiom
