@@ -28,13 +28,13 @@ case class SubClassOf(axiomAnnotations: List[Annotation] = Nil,
                       superClassExpression: ClassExpression) extends ClassAxiom
 
 // constraint: classExpressions 2..*
-case class EquivalentClasses(axiomAnnotations: List[Annotation],
+case class EquivalentClasses(axiomAnnotations: List[Annotation] = Nil,
                              classExpressions: List[ClassExpression]) extends ClassAxiom
 
 // constraint: classExpressions 2..*
-case class DisjointClasses(axiomAnnotations: List[Annotation],
+case class DisjointClasses(axiomAnnotations: List[Annotation] = Nil,
                            classExpressions: List[ClassExpression]) extends ClassAxiom
 
-case class DisjointUnion(axiomAnnotations: List[Annotation],
+case class DisjointUnion(axiomAnnotations: List[Annotation] = Nil,
                          disjointClassExpressions: List[ClassExpression],
                          `class`: Class) extends ClassAxiom

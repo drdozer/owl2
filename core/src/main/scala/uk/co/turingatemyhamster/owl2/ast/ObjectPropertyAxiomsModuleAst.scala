@@ -42,46 +42,46 @@ trait ObjectPropertyAxiomsModuleAst extends owl2.ObjectPropertyAxiomsModule {
 }
 
 // constraint: objectPropertyExpressions 2..*
-case class EquivalentObjectProperties(axiomAnnotations: List[Annotation],
+case class EquivalentObjectProperties(axiomAnnotations: List[Annotation] = Nil,
                                       objectPropertyExpressions: List[ObjectPropertyExpression]) extends ObjectPropertyAxiom
 
 // constraint: objectPropertyExpressions 2..*
-case class DisjointObjectProperties(axiomAnnotations: List[Annotation],
+case class DisjointObjectProperties(axiomAnnotations: List[Annotation] = Nil,
                                     objectPropertyExpressions: List[ObjectPropertyExpression]) extends ObjectPropertyAxiom
 
-case class SubObjectPropertyOf(axiomAnnotations: List[Annotation],
+case class SubObjectPropertyOf(axiomAnnotations: List[Annotation] = Nil,
                                superObjectPropertyExpresssion: ObjectPropertyExpression,
                                subObjectPropertyExpressions: List[ObjectPropertyExpression]) extends ObjectPropertyAxiom
 
-case class ObjectPropertyDomain(axiomAnnotations: List[Annotation],
+case class ObjectPropertyDomain(axiomAnnotations: List[Annotation] = Nil,
                                 objectPropertyExpression: ObjectPropertyExpression,
                                 domain: ClassExpression) extends ObjectPropertyAxiom
 
-case class ObjectPropertyRange(axiomAnnotations: List[Annotation],
+case class ObjectPropertyRange(axiomAnnotations: List[Annotation] = Nil,
                                objectPropertyExpression: ObjectPropertyExpression,
                                range: ClassExpression) extends ObjectPropertyAxiom
 
-case class InverseObjectProperties(axiomAnnotations: List[Annotation],
+case class InverseObjectProperties(axiomAnnotations: List[Annotation] = Nil,
                                    objectPropertyExpression1: ObjectPropertyExpression,
                                    objectPropertyExpression2: ObjectPropertyExpression) extends ObjectPropertyAxiom
 
-case class FunctionalObjectProperty(axiomAnnotations: List[Annotation],
+case class FunctionalObjectProperty(axiomAnnotations: List[Annotation] = Nil,
                                     objectPropertyExpression: ObjectPropertyExpression) extends ObjectPropertyAxiom
 
-case class ReflexiveObjectProperty(axiomAnnotations: List[Annotation],
+case class ReflexiveObjectProperty(axiomAnnotations: List[Annotation] = Nil,
                                    objectPropertyExpression: ObjectPropertyExpression) extends ObjectPropertyAxiom
 
-case class InverseFunctionalObjectProperty(axiomAnnotations: List[Annotation],
+case class InverseFunctionalObjectProperty(axiomAnnotations: List[Annotation] = Nil,
                                            objectPropertyExpression: ObjectPropertyExpression) extends ObjectPropertyAxiom
 
-case class IrreflexiveObjectProperty(axiomAnnotations: List[Annotation],
+case class IrreflexiveObjectProperty(axiomAnnotations: List[Annotation] = Nil,
                                      objectPropertyExpression: ObjectPropertyExpression) extends ObjectPropertyAxiom
 
-case class SymmetricObjectProperty(axiomAnnotations: List[Annotation],
+case class SymmetricObjectProperty(axiomAnnotations: List[Annotation] = Nil,
                                    objectPropertyExpression: ObjectPropertyExpression) extends ObjectPropertyAxiom
 
-case class TransitiveObjectProperty(axiomAnnotations: List[Annotation],
+case class TransitiveObjectProperty(axiomAnnotations: List[Annotation] = Nil,
                                     objectPropertyExpression: ObjectPropertyExpression) extends ObjectPropertyAxiom
 
-case class AsymmetricObjectProperty(axiomAnnotations: List[Annotation],
+case class AsymmetricObjectProperty(axiomAnnotations: List[Annotation] = Nil,
                                     objectPropertyExpression: ObjectPropertyExpression) extends ObjectPropertyAxiom

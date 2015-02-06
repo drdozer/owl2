@@ -57,8 +57,7 @@ case class Class(entityIRI: IRI) extends ClassExpression with Entity
 
 // rdfs:Literal or a datatype in the datatype map or not a reserved vocabulary IRI
 case class Datatype(entityIRI: IRI,
-                    arity: BigInt,
-                    datatype: Literal) extends Entity with DataRange
+                    arity: BigInt = BigInt(1)) extends Entity with DataRange
 
 case class AnnotationProperty(entityIRI: IRI) extends Entity
 
@@ -66,8 +65,18 @@ case class NamedIndividual(entityIRI: IRI) extends Entity with Individual
 
 case class AnonymousIndividual(nodeID: String) extends Individual with AnnotationSubject with AnnotationValue
 
-sealed trait Literal extends AnnotationValue
+sealed trait Literal extends AnnotationValue {
+  def datatype: Datatype
+}
 
-case class TypedLiteral(value: String, datatype: Datatype) extends Literal
-case class StringLiteralNoLangauge(value: String) extends Literal
-case class StringLiteralWithLanguage(value: String, language: String) extends Literal
+case class TypedLiteral(value: String,
+                        datatype: Datatype) extends Literal
+
+case class StringLiteralNoLangauge(value: String,
+                                   datatype: Datatype = Datatype(
+                                     AbbreviatedIRI(PrefixName("xsd"), "string"))) extends Literal
+
+case class StringLiteralWithLanguage(value: String,
+                                     datatype: Datatype = Datatype(
+                                       AbbreviatedIRI(PrefixName("xsd"), "string")),
+                                     language: String) extends Literal

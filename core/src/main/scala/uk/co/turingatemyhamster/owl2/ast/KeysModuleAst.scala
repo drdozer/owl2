@@ -14,7 +14,7 @@ trait KeysModuleAst extends KeysModule {
   override final type HasKey = ast.HasKey
 }
 
-case class HasKey(axiomAnnotations: List[Annotation],
+case class HasKey(axiomAnnotations: List[Annotation] = Nil,
                   objectPropertyExpressions: List[ObjectPropertyExpression],
                   dataPropertyExpressions: List[DataPropertyExpression],
                   classExpression: ClassExpression) extends Axiom
