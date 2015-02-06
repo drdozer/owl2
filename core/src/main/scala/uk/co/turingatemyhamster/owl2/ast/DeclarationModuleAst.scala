@@ -19,4 +19,5 @@ trait DeclarationModuleAst extends DeclarationModule {
 
 }
 
-case class Declaration(axiomAnnotations: List[Annotation], entity: Entity) extends Axiom
+case class Declaration(axiomAnnotations: List[Annotation] = Nil,
+                       entity: Entity) extends Axiom

@@ -42,4 +42,13 @@ class UsingAst {
   SubClassOf(Nil, "a" -> "Child", "a" -> "Person")
 
   ("a" -> "Child") ⊑ ("a" -> "Person")
+
+  Declaration(Nil, Class("owl" -> "Thing"))
+  Declaration(Nil, Class("owl" -> "Nothing"))
+  Declaration(Nil, ObjectProperty("owl" -> "topObjectProperty"))
+  Declaration(Nil, ObjectProperty("owl" -> "bottomObjectProperty"))
+  Declaration(Nil, DataProperty("owl" -> "topDataProperty"))
+  Declaration(Nil, DataProperty("owl" -> "bottomDataProperty"))
+  Declaration(Nil, Datatype("rdfs" -> "Literal"))
+
 }
