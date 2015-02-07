@@ -28,17 +28,17 @@ trait DataRangesModuleImpl extends owl2.DataRangesModule {
   override final type FacetRestriction = ast.FacetRestriction
 }
 
-case class DataComplementOf(arity: BigInt,
+case class DataComplementOf(arity: BigInt = BigInt(1),
                             dataRange: DataRange) extends DataRange
 
 // 2..* dataRanges
-case class DataUnionOf(arity: BigInt, dataRanges: List[DataRange]) extends DataRange
+case class DataUnionOf(arity: BigInt = BigInt(1), dataRanges: List[DataRange]) extends DataRange
 
-case class DataOneOf(arity: BigInt, literals: List[Literal]) extends DataRange
+case class DataOneOf(arity: BigInt = BigInt(1), literals: List[Literal]) extends DataRange
 
-case class DatatypeRestriction(arity: BigInt, datatype: Datatype) extends DataRange
+case class DatatypeRestriction(arity: BigInt = BigInt(1), datatype: Datatype) extends DataRange
 
 // 2..* dataRanges
-case class DataIntersectionOf(arity: BigInt, dataRanges: List[DataRange]) extends DataRange
+case class DataIntersectionOf(arity: BigInt = BigInt(1), dataRanges: List[DataRange]) extends DataRange
 
 case class FacetRestriction(constrainingFacet: IRI, restrictionValue: Literal)
