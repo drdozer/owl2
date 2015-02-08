@@ -21,8 +21,8 @@ trait DataPropertyRestrictionsModuleImpl extends owl2.DataPropertyRestrictionsMo
 
 }
 
-case class DataSomeValuesFrom(dataPropertyExpression: DataPropertyExpression, arity: BigInt) extends ClassExpression
+case class DataSomeValuesFrom(dataPropertyExpression: List[DataPropertyExpression], dataRange: DataRange, arity: BigInt = BigInt(1)) extends ClassExpression
 
-case class DataAllValuesFrom(dataPropertyExpression: DataPropertyExpression, arity: BigInt) extends ClassExpression
+case class DataAllValuesFrom(dataPropertyExpression: List[DataPropertyExpression], dataRange: DataRange, arity: BigInt = BigInt(1)) extends ClassExpression
 
 case class DataHasValue(dataPropertyExpression: DataPropertyExpression, literal: Literal) extends ClassExpression

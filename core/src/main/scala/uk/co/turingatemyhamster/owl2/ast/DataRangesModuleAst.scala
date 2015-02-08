@@ -36,7 +36,7 @@ case class DataUnionOf(arity: BigInt = BigInt(1), dataRanges: List[DataRange]) e
 
 case class DataOneOf(arity: BigInt = BigInt(1), literals: List[Literal]) extends DataRange
 
-case class DatatypeRestriction(arity: BigInt = BigInt(1), datatype: Datatype) extends DataRange
+case class DatatypeRestriction(arity: BigInt = BigInt(1), datatype: Datatype, restrictions: List[FacetRestriction]) extends DataRange
 
 // 2..* dataRanges
 case class DataIntersectionOf(arity: BigInt = BigInt(1), dataRanges: List[DataRange]) extends DataRange

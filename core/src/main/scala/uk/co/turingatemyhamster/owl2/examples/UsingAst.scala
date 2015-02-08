@@ -36,6 +36,11 @@ object UsingAst {
     def === (c: Int): ===[I] = examples.===(_i, BigInt(c))
 
     def ≥ (c: Int): ≥[I] = examples.≥(_i, BigInt(c))
+
+    def ^^[J](j: J)(implicit iString: I => String, jDatatype: J => Datatype): TypedLiteral = TypedLiteral(_i, j)
+
+    def | [J](j: J)(implicit iDT: I => Datatype, jFR: J => FacetRestriction): DatatypeRestriction =
+      DatatypeRestriction(datatype = _i, restrictions = j::Nil)
   }
 }
 
@@ -64,11 +69,19 @@ object Triple {
     AnnotationAssertion(Nil, t.sub, t.pred, t.obj)
 
   implicit def toObjectPropertyAssertion[Sub, Pred, Obj](t: Triple[Sub, Pred, Obj]
-                                               )(implicit
-                                                 subIndividual: Sub => Individual,
-                                                 predPE: Pred => ObjectPropertyExpression,
-                                                 objIndividual: Obj => Individual): ObjectPropertyAssertion =
-      ObjectPropertyAssertion(Nil, t.sub, t.pred, t.obj)
+                                                          )(implicit
+                                                            subIndividual: Sub => Individual,
+                                                            predPE: Pred => ObjectPropertyExpression,
+                                                            objIndividual: Obj => Individual): ObjectPropertyAssertion =
+    ObjectPropertyAssertion(Nil, t.sub, t.pred, t.obj)
+
+  implicit def toDataPropertyAssertion[Sub, Pred, Obj](t: Triple[Sub, Pred, Obj]
+                                                        )(implicit
+                                                          subIndividual: Sub => Individual,
+                                                          predPE: Pred => DataPropertyExpression,
+                                                          objLit: Obj => Literal): DataPropertyAssertion =
+    DataPropertyAssertion(Nil, t.sub, t.pred, t.obj)
+
 }
 
 case class Inverse[P](p: P) {
@@ -145,7 +158,12 @@ case object ∃ {
   implicit def someObjectSomeValuesFrom[P, V](some: ∃[P, V])(implicit
                                                              pPE: P => ObjectPropertyExpression,
                                                              vCE: V => ClassExpression): ObjectSomeValuesFrom =
-      ObjectSomeValuesFrom(some.p, some.v)
+    ObjectSomeValuesFrom(some.p, some.v)
+
+  implicit def someDataSomeValuesFrom[P, V](some: ∃[P, V])(implicit
+                                                           pPE: P => DataPropertyExpression,
+                                                           vDR: V => DataRange): DataSomeValuesFrom =
+    DataSomeValuesFrom(some.p::Nil, some.v)
 }
 
 case class ∀[P, V](p: P, v: V)
@@ -155,6 +173,11 @@ case object ∀ {
                                                        pPE: P => ObjectPropertyExpression,
                                                        vCE: V => ClassExpression): ObjectAllValuesFrom =
     ObjectAllValuesFrom(all.p, all.v)
+
+  implicit def allDataValuesFrom[P, V](all: ∀[P, V])(implicit
+                                                     pPE: P => DataPropertyExpression,
+                                                     vDR: V => DataRange): DataAllValuesFrom =
+    DataAllValuesFrom(all.p::Nil, all.v)
 }
 
 case class ∈[P, V](p: P, v: V)
@@ -164,6 +187,11 @@ object ∈ {
                                                    pPE: P => ObjectPropertyExpression,
                                                    vI: V => Individual): ObjectHasValue =
     ObjectHasValue(pv.p, pv.v)
+
+  implicit def toDataHasValue[P, V](pv: ∈[P, V])(implicit
+                                                 pPE: P => DataPropertyExpression,
+                                                 vI: V => Literal): DataHasValue =
+    DataHasValue(pv.p, pv.v)
 }
 
 case class ≤[P](p: P, c: BigInt)
@@ -347,6 +375,21 @@ class UsingAst {
 
   ObjectMinCardinality(objectPropertyExpression = "a" -> "hasPet", cardinality = BigInt(1))
   "a" -> "hasPet" ≥ 1 : ObjectMinCardinality
+
+  DataPropertyAssertion(Nil, "a" -> "Meg", "a" -> "hasAge", "17"^^("xsd" -> "integer"))
+  ("a" -> "Meg") --- ("a" -> "hasAge") --> ("17"^^("xsd" -> "integer")) : DataPropertyAssertion
+
+  DataSomeValuesFrom(
+    ("a" -> "hasAge")::Nil,
+    DatatypeRestriction(
+      BigInt(1),
+      "xsd" -> "integer",
+      FacetRestriction("xsd" -> "maxExclusive", "20"^^("xsd" -> "integer"))::Nil),
+    BigInt(1))
+
+  ∃("a" -> "hasAge", "xsd" -> "integer" | "xsd" -> "maxExclusive" -> ("20"^^("xsd" -> "integer"))) : DataSomeValuesFrom
+  ∀("a" -> "hasZIP", "xsd" -> "integer") : DataAllValuesFrom
+  ∈("a" -> "hasAge", "17"^^("xsd" -> "integer")) : DataHasValue
 
   SubObjectPropertyOf(Nil, "a" -> "hasDog", ("a" -> "hasPet" : ObjectPropertyExpression) :: Nil)
   ObjectPropertyAssertion(Nil, "a" -> "Peter", "a" -> "hasDog", "a" -> "Brian")
