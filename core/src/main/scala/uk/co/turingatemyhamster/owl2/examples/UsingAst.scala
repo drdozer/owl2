@@ -30,6 +30,12 @@ object UsingAst {
     def inverse = Inverse(_i)
 
     def complement = Complement(_i)
+
+    def ≤ (c: Int): ≤[I] = examples.≤(_i, BigInt(c))
+
+    def === (c: Int): ===[I] = examples.===(_i, BigInt(c))
+
+    def ≥ (c: Int): ≥[I] = examples.≥(_i, BigInt(c))
   }
 }
 
@@ -105,6 +111,82 @@ object ⊔ {
   implicit def objectUnion[I](oi: ⊔ [I])(implicit iCE: I => ClassExpression): ObjectUnionOf =
     ObjectUnionOf(oi.i1 :: oi.i2 :: oi.is map iCE)
 }
+
+case class ≡[I](i1: I, i2: I, is: List[I])
+
+object ≡ {
+  def apply[I](i1: I, i2: I, is: I*): ≡ [I] = ≡(i1, i2, is.to[List])
+
+  implicit def toEquivalentClasses[I](equiv: ≡[I])(implicit iClassExpression: I => ClassExpression): EquivalentClasses =
+    EquivalentClasses(Nil, (equiv.i1 :: equiv.i2 :: equiv.is) map iClassExpression)
+}
+
+case class ≢[I](i1: I, i2: I, is: List[I])
+
+object ≢ {
+  def apply[I](i1: I, i2: I, is: I*): ≢[I] = ≢(i1, i2, is.to[List])
+
+  implicit def toDifferentIndividuals[I](nequiv: ≢[I])(implicit iIndividual: I => Individual): DifferentIndividuals =
+    DifferentIndividuals(Nil, (nequiv.i1 :: nequiv.i2 :: nequiv.is) map iIndividual)
+}
+
+case class ∋[I](i1: I, is: List[I])
+
+object ∋ {
+  def apply[I](i1: I, is: I*): ∋[I] = ∋(i1, is.to[List])
+
+  implicit def toObjectOneOf[I](members: ∋[I])(implicit iIndividual: I => Individual): ObjectOneOf =
+    ObjectOneOf((members.i1 :: members.is) map iIndividual)
+}
+
+case class ∃[P, V](p: P, v: V)
+
+case object ∃ {
+  implicit def someObjectSomeValuesFrom[P, V](some: ∃[P, V])(implicit
+                                                             pPE: P => ObjectPropertyExpression,
+                                                             vCE: V => ClassExpression): ObjectSomeValuesFrom =
+      ObjectSomeValuesFrom(some.p, some.v)
+}
+
+case class ∀[P, V](p: P, v: V)
+
+case object ∀ {
+  implicit def allObjectValuesFrom[P, V](all: ∀[P, V])(implicit
+                                                       pPE: P => ObjectPropertyExpression,
+                                                       vCE: V => ClassExpression): ObjectAllValuesFrom =
+    ObjectAllValuesFrom(all.p, all.v)
+}
+
+case class ∈[P, V](p: P, v: V)
+
+object ∈ {
+  implicit def toObjectHasValue[P, V](pv: ∈[P, V])(implicit
+                                                   pPE: P => ObjectPropertyExpression,
+                                                   vI: V => Individual): ObjectHasValue =
+    ObjectHasValue(pv.p, pv.v)
+}
+
+case class ≤[P](p: P, c: BigInt)
+
+object ≤ {
+  implicit def toObjectMaxCardinality[P](lteq: ≤[P])(implicit pPE: P => ObjectPropertyExpression): ObjectMaxCardinality =
+    ObjectMaxCardinality(lteq.p, None, lteq.c)
+}
+
+case class ===[P](p: P, c: BigInt)
+
+object === {
+  implicit def toObjectExactCardinality[P](eq: ===[P])(implicit pPE: P => ObjectPropertyExpression): ObjectExactCardinality =
+    ObjectExactCardinality(eq.p, None, eq.c)
+}
+
+case class ≥[P](p: P, c: BigInt)
+
+object ≥ {
+  implicit def toObjectMaxCardinality[P](gteq: ≥[P])(implicit pPE: P => ObjectPropertyExpression): ObjectMinCardinality =
+    ObjectMinCardinality(gteq.p, None, gteq.c)
+}
+
 
 /**
  *
@@ -204,6 +286,67 @@ class UsingAst {
   ObjectComplementOf("a" -> "man")
   ("a" -> "man").complement : ObjectComplementOf
   ("a" -> "man").complement.complement : ClassExpression
+
+  EquivalentClasses(Nil, List("a" -> "GriffinFamilyMember" : ClassExpression, ObjectOneOf(
+    List("a" -> "Peter" : Individual,
+    "a" -> "Lois",
+    "a" -> "Stewie",
+    "a" -> "Meg",
+    "a" -> "Chris",
+    "a" -> "Brian")
+  )))
+  DifferentIndividuals(individuals = List("a" -> "Quagmire" : Individual,
+    "a" -> "Peter",
+    "a" -> "Lois",
+    "a" -> "Stewie",
+    "a" -> "Meg",
+    "a" -> "Chris",
+    "a" -> "Brian")
+  )
+  ("a" -> "GriffinFamilyMember").complement : ClassExpression
+
+  ≡("a" -> "GriffinFamilyMember" : ClassExpression,
+    ∋(
+      "a" -> "Peter",
+      "a" -> "Lois",
+      "a" -> "Stewie",
+      "a" -> "Meg",
+      "a" -> "Chris",
+      "a" -> "Brian") : ClassExpression) : ClassAxiom
+  ≢("a" -> "Quagmire",
+    "a" -> "Peter",
+    "a" -> "Lois",
+    "a" -> "Stewie",
+    "a" -> "Meg",
+    "a" -> "Chris",
+    "a" -> "Brian")
+
+
+  ObjectPropertyAssertion(Nil, "a" -> "Peter", "a" -> "fatherOf", "a" -> "Stewie")
+  ClassAssertion(Nil, "a" -> "Stewie", "a" -> "Man")
+
+  ("a" -> "Peter") --- ("a" -> "fatherOf") --> ("a" -> "Stewie")
+  "a" -> "Stewie" is_a "a" -> "Man"
+
+  ObjectSomeValuesFrom("a" -> "fatherOf", "a" -> "Man")
+  ∃("a" -> "fatherOf", "a" -> "Man") : ObjectSomeValuesFrom
+
+  ObjectAllValuesFrom("a" -> "hasPet", "a" -> "Dog")
+  ∀("a" -> "hasPet", "a" -> "Dog") : ObjectAllValuesFrom
+
+  ObjectHasValue("a" -> "hasPet", "a" -> "Brian")
+  ∈("a" -> "hasPet", "a" -> "Brian") : ObjectHasValue
+
+  ObjectHasSelf("a" -> "likes")
+
+  ObjectMaxCardinality(objectPropertyExpression = "a" -> "hasPet", cardinality = BigInt(1))
+  ("a" -> "Peter") is_a ("a" -> "hasPet" ≤ 1)
+
+  ObjectExactCardinality(objectPropertyExpression = "a" -> "hasPet", cardinality = BigInt(1))
+  ("a" -> "hasPet") === 1 : ObjectExactCardinality
+
+  ObjectMinCardinality(objectPropertyExpression = "a" -> "hasPet", cardinality = BigInt(1))
+  "a" -> "hasPet" ≥ 1 : ObjectMinCardinality
 
   SubObjectPropertyOf(Nil, "a" -> "hasDog", ("a" -> "hasPet" : ObjectPropertyExpression) :: Nil)
   ObjectPropertyAssertion(Nil, "a" -> "Peter", "a" -> "hasDog", "a" -> "Brian")

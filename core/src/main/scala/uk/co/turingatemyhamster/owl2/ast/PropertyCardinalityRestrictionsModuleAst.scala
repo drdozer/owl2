@@ -23,13 +23,13 @@ trait ObjectPropertyCardinalityRestrictionsModuleImpl extends owl2.ObjectPropert
 }
 
 case class ObjectMaxCardinality(objectPropertyExpression: ObjectPropertyExpression,
-                                classExpression: ClassExpression,
+                                classExpression: Option[ClassExpression] = None,
                                 cardinality: BigInt) extends ClassExpression
 
 case class ObjectMinCardinality(objectPropertyExpression: ObjectPropertyExpression,
-                                classExpression: ClassExpression,
+                                classExpression: Option[ClassExpression] = None,
                                 cardinality: BigInt) extends ClassExpression
 
 case class ObjectExactCardinality(objectPropertyExpression: ObjectPropertyExpression,
-                                  classExpression: ClassExpression,
+                                  classExpression: Option[ClassExpression] = None,
                                   cardinality: BigInt) extends ClassExpression
