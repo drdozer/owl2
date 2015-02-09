@@ -22,13 +22,13 @@ trait DataPropertyCardinalityRestrictionsModuleImpl extends owl2.DataPropertyCar
 }
 
 case class DataMinCardinality(dataPropertyExpression: DataPropertyExpression,
-                              dataRange: DataRange,
+                              dataRange: Option[DataRange],
                               cardinality: BigInt) extends ClassExpression
 
 case class DataMaxCardinality(dataPropertyExpression: DataPropertyExpression,
-                              dataRange: DataRange,
+                              dataRange: Option[DataRange],
                               cardinality: BigInt) extends ClassExpression
 
 case class DataExactCardinality(dataPropertyExpression: DataPropertyExpression,
-                                dataRange: DataRange,
+                                dataRange: Option[DataRange],
                                 cardinality: BigInt) extends ClassExpression
