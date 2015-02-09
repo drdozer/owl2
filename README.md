@@ -1,4 +1,6 @@
 # owl2
+
+[![Join the chat at https://gitter.im/drdozer/owl2](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/drdozer/owl2?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 A scala OWL2 API
 
 This project provides an abstract API and concrete AST for the OWL2 specification.
