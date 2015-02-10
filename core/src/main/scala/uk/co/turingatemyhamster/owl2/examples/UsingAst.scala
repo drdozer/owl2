@@ -59,6 +59,8 @@ object UsingAst {
       Annotation(Nil, _i, j)
 
     def ## (anns: Annotation*): examples.##[I] = examples.##(_i, anns.to[List])
+
+    def =⨃[J](j1: J, j2: J, js: J*): ⨃[J, I] = ⨃(_i, j1, j2, js.to[List])
   }
 }
 
@@ -154,9 +156,32 @@ object ⊔ {
   implicit def objectUnion[I](oi: ⊔ [I])(implicit iCE: I => ClassExpression): ObjectUnionOf =
     ObjectUnionOf(oi.i1 :: oi.i2 :: oi.is map iCE)
 
-
   implicit def dataUnion[I](oi: ⊔[I])(implicit iDR: I => DataRange): DataUnionOf =
       DataUnionOf(dataRanges = oi.i1 :: oi.i2 :: oi.is map iDR)
+}
+
+case class ⊔=∅[I](i1: I, i2: I, is: List[I])
+
+case object ⊔=∅ {
+  def apply[I](i1: I, i2: I, is: I*): ⊔=∅[I] = ⊔=∅(i1, i2, is.to[List])
+
+  implicit def toDisjointClasses[I](disj: ⊔=∅[I])(implicit iCE: I => ClassExpression): DisjointClasses =
+    DisjointClasses(Nil, (disj.i1 :: disj.i2 :: disj.is) map iCE)
+
+  implicit def toDisjointObjectProperties[I](disj: ⊔=∅[I])(implicit iP: I => ObjectPropertyExpression): DisjointObjectProperties =
+    DisjointObjectProperties(Nil, (disj.i1 :: disj.i2 :: disj.is) map iP)
+
+  implicit def toDisjointDataProperties[I](disj: ⊔=∅[I])(implicit iP: I => DataPropertyExpression): DisjointDataProperties =
+    DisjointDataProperties(Nil, (disj.i1 :: disj.i2 :: disj.is) map iP)
+}
+
+case class ⨃[I, C](c: C, i1: I, i2: I, is: List[I])
+
+object ⨃ {
+  def apply[I, C](c: C, i1: I, i2: I, is: I*): ⨃[I, C] = ⨃(c: C, i1, i2, is.to[List])
+
+  def toDisjointUnion[I, C](disj: ⨃[I, C])(implicit iCE: I => ClassExpression, cC: C => Class): DisjointUnion =
+      DisjointUnion(Nil, (disj.i1 :: disj.i2 :: disj.is) map iCE, disj.c)
 }
 
 case class ≡[I](i1: I, i2: I, is: List[I])
@@ -166,6 +191,12 @@ object ≡ {
 
   implicit def toEquivalentClasses[I](equiv: ≡[I])(implicit iClassExpression: I => ClassExpression): EquivalentClasses =
     EquivalentClasses(Nil, (equiv.i1 :: equiv.i2 :: equiv.is) map iClassExpression)
+
+  implicit def toEquivalentObjectProperties[I](equiv: ≡[I])(implicit iP: I => ObjectPropertyExpression): EquivalentObjectProperties =
+    EquivalentObjectProperties(Nil, (equiv.i1 :: equiv.i2 :: equiv.is) map iP)
+
+  implicit def toEquivalentDataProperties[I](equiv: ≡[I])(implicit iP: I => DataPropertyExpression): EquivalentDataProperties =
+    EquivalentDataProperties(Nil, (equiv.i1 :: equiv.i2 :: equiv.is) map iP)
 }
 
 case class ≢[I](i1: I, i2: I, is: List[I])
