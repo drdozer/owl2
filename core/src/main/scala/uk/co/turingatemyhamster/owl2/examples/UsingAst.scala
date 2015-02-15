@@ -61,6 +61,12 @@ object UsingAst {
     def ## (anns: Annotation*): examples.##[I] = examples.##(_i, anns.to[List])
 
     def =⨃[J](j1: J, j2: J, js: J*): ⨃[J, I] = ⨃(_i, j1, j2, js.to[List])
+
+    def ≡[J](j: J): ≡≡[I,J] = ≡≡(_i, j)
+
+    def ⊓[J](j: J): ⊓⊓[I, J] = ⊓⊓(_i, j)
+
+    def ¬ = _i.complement
   }
 }
 
@@ -148,6 +154,15 @@ object ⊓ {
       DataIntersectionOf(dataRanges = oi.i1 :: oi.i2 :: oi.is map iDR)
 }
 
+case class ⊓⊓[I, J](i: I, j: J)
+
+object ⊓⊓ {
+  implicit def objectIntersection[I, J](oi: ⊓⊓[I, J])(implicit
+                                                      iCE: I => ClassExpression,
+                                                      jCE: J => ClassExpression): ObjectIntersectionOf =
+    ObjectIntersectionOf(iCE(oi.i)::jCE(oi.j)::Nil)
+}
+
 case class ⊔ [I](i1: I, i2: I, is: List[I])
 
 object ⊔ {
@@ -197,6 +212,15 @@ object ≡ {
 
   implicit def toEquivalentDataProperties[I](equiv: ≡[I])(implicit iP: I => DataPropertyExpression): EquivalentDataProperties =
     EquivalentDataProperties(Nil, (equiv.i1 :: equiv.i2 :: equiv.is) map iP)
+}
+
+case class ≡≡[I, J](i: I, j: J)
+
+object ≡≡ {
+  implicit def toEquivalentClasses[I, J](equiv: ≡≡[I, J])(implicit
+                                                          iCE: I => ClassExpression,
+                                                          jCE: J => ClassExpression): EquivalentClasses =
+    EquivalentClasses(Nil, iCE(equiv.i)::jCE(equiv.j)::Nil)
 }
 
 case class ≢[I](i1: I, i2: I, is: List[I])
@@ -503,4 +527,5 @@ class UsingAst {
                                    lit"Meggan")
 
 
+  pl"a:ChildlessPerson" ≡ (pl"a:Person" ⊓ pl"a:Parent"¬)
 }
