@@ -36,7 +36,7 @@ case class AnnotationPropertyRange(axiomAnnotations: List[Annotation] = Nil,
                                    annotationProperty: AnnotationProperty,
                                    range: IRI) extends AnnotationAxiom
 
-case class AnnotationAssertion(axiomAnnotations: List[Annotation] = Nil,
+case class asAnnotationAssertion(axiomAnnotations: List[Annotation] = Nil,
                                annotationSubject: AnnotationSubject,
                                annotationProperty: AnnotationProperty,
                                annotationValue: AnnotationValue) extends AnnotationAxiom
